@@ -1,12 +1,12 @@
 package christmas;
 
-import christmas.controller.Restaurant;
+import christmas.controller.Employee;
 import christmas.view.RestaurantInputView;
 import christmas.view.RestaurantOutputView;
 
 public class Application {
     public static void main(String[] args) {
-        Restaurant restaurant = new Restaurant(
+        Employee restaurant = new Employee(
                 new RestaurantInputView(),
                 new RestaurantOutputView()
         );
