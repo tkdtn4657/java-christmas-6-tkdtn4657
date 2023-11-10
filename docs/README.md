@@ -4,7 +4,7 @@
 
 
 ## 기능 Todo
-- [ ] 실행
+- [x] 실행
 - [ ] 식당
   - [ ] 전달
     - [ ] inputView, OutputView에게 만들어진 객체를 전달

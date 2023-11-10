@@ -1,7 +1,16 @@
 package christmas;
 
+import christmas.controller.Restaurant;
+import christmas.view.RestaurantInputView;
+import christmas.view.RestaurantOutputView;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        Restaurant restaurant = new Restaurant(
+                new RestaurantInputView(),
+                new RestaurantOutputView()
+        );
+
+        restaurant.run();
     }
 }
