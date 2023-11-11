@@ -1,7 +1,7 @@
 package christmas;
 
 import christmas.controller.Employee;
-import christmas.validator.VisitConvertor;
+import christmas.convertor.VisitConvertor;
 import christmas.view.RestaurantInputView;
 import christmas.view.RestaurantOutputView;
 
