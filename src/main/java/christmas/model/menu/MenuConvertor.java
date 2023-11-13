@@ -13,7 +13,8 @@ public class MenuConvertor {
             .toList();
 
     private final List<Consumer<List<String>>> visitFilters = List.of(
-            this::menuFormValidate
+            this::menuFormValidate,
+            this::availableMenu
     );
 
     public boolean validate(List<String> splitLine){
@@ -32,6 +33,17 @@ public class MenuConvertor {
                 .filter((line)-> line.matches(MENU_REGEX))
                 .toList()
                 .size() != splitLine.size()){
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void availableMenu(List<String> splitLine){
+        List<String> menuSplitLine = splitLine.stream()
+                .map((line) -> line.split("-")[0])
+                .toList();
+
+        if(!menuSplitLine.stream()
+                .allMatch(menus::contains)){
             throw new IllegalArgumentException();
         }
     }
