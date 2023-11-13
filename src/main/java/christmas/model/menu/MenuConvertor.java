@@ -7,6 +7,7 @@ import java.util.function.Consumer;
 public class MenuConvertor {
 
     private static final String MENU_REGEX = "^.*-[0-9]";
+    private static final String HYPHEN = "-";
 
     private final List<String> menus = Arrays.stream(Menu.values())
             .map(String::valueOf)
@@ -40,7 +41,7 @@ public class MenuConvertor {
 
     private void availableMenu(List<String> splitLine){
         List<String> menuSplitLine = splitLine.stream()
-                .map((line) -> line.split("-")[0])
+                .map((line) -> line.split(HYPHEN)[0])
                 .toList();
 
         if(!menuSplitLine.stream()
@@ -51,7 +52,7 @@ public class MenuConvertor {
 
     private void duplicateMenu(List<String> splitLine){
         List<String> menuSplitLine = splitLine.stream()
-                .map((line) -> line.split("-")[0])
+                .map((line) -> line.split(HYPHEN)[0])
                 .toList();
 
         if(menuSplitLine.stream()
