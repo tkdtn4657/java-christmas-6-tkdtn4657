@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class MenuConvertorTest extends NsTest {
+    private static final String ERROR_MESSAGE = "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.";
     private static final String HYPHEN = "-";
     private final MenuConvertor menuConvertor = new MenuConvertor();
     private final List<String> menus = Arrays.stream(Menu.values()).map(String::valueOf).toList();
@@ -26,7 +27,7 @@ class MenuConvertorTest extends NsTest {
     void 중복_메뉴_테스트() {
         assertSimpleTest(() -> {
             runException("1", "티본스테이크-1,티본스테이크-1");
-            assertThat(output()).contains("[ERROR]");
+            assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
 
@@ -34,7 +35,7 @@ class MenuConvertorTest extends NsTest {
     void 메뉴에_없는_음식() {
         assertSimpleTest(() -> {
             runException("1", "티본스테이크-1,파스타-1");
-            assertThat(output()).contains("[ERROR]");
+            assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
 
@@ -42,7 +43,7 @@ class MenuConvertorTest extends NsTest {
     void 메뉴_입력형태_검증_파스타1() {
         assertSimpleTest(() -> {
             runException("1", "파스타1");
-            assertThat(output()).contains("[ERROR]");
+            assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
 

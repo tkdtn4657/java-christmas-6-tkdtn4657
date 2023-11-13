@@ -6,7 +6,8 @@ import java.util.function.Consumer;
 
 public class MenuConvertor {
 
-    private static final String MENU_REGEX = "^.*-[0-9]";
+    private static final String ERROR_MESSAGE = "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.";
+    private static final String MENU_REGEX = ".*-\\d{1,2}$";
     private static final String HYPHEN = "-";
 
     private final List<String> menus = Arrays.stream(Menu.values())
@@ -35,7 +36,7 @@ public class MenuConvertor {
                 .filter((line)-> line.matches(MENU_REGEX))
                 .toList()
                 .size() != splitLine.size()){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR_MESSAGE);
         }
     }
 
@@ -46,7 +47,7 @@ public class MenuConvertor {
 
         if(!menuSplitLine.stream()
                 .allMatch(menus::contains)){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR_MESSAGE);
         }
     }
 
@@ -59,7 +60,7 @@ public class MenuConvertor {
                 .distinct()
                 .toList()
                 .size() != splitLine.size()){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR_MESSAGE);
         }
     }
 
