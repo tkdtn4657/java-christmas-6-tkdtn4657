@@ -1,6 +1,7 @@
 package christmas.model.menu;
 
 import java.util.Arrays;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -9,6 +10,8 @@ public class MenuConvertor {
     private static final String ERROR_MESSAGE = "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.";
     private static final String MENU_REGEX = ".*-\\d{1,2}$";
     private static final String HYPHEN = "-";
+
+    private EnumMap<Menu, Integer> orderSheet = new EnumMap(Menu.class);
 
     private final List<String> menus = Arrays.stream(Menu.values())
             .map(String::valueOf)
@@ -20,7 +23,7 @@ public class MenuConvertor {
             this::duplicateMenu
     );
 
-    public boolean validate(List<String> splitLine){
+    public boolean inputValidate(List<String> splitLine){
         try {
             visitFilters.forEach(
                     filter -> filter.accept(splitLine));
