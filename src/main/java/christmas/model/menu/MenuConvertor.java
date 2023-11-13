@@ -14,7 +14,8 @@ public class MenuConvertor {
 
     private final List<Consumer<List<String>>> visitFilters = List.of(
             this::menuFormValidate,
-            this::availableMenu
+            this::availableMenu,
+            this::duplicateMenu
     );
 
     public boolean validate(List<String> splitLine){
@@ -44,6 +45,19 @@ public class MenuConvertor {
 
         if(!menuSplitLine.stream()
                 .allMatch(menus::contains)){
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void duplicateMenu(List<String> splitLine){
+        List<String> menuSplitLine = splitLine.stream()
+                .map((line) -> line.split("-")[0])
+                .toList();
+
+        if(menuSplitLine.stream()
+                .distinct()
+                .toList()
+                .size() != splitLine.size()){
             throw new IllegalArgumentException();
         }
     }
