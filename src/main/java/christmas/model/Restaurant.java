@@ -12,7 +12,7 @@ public class Restaurant {
     private static final String HYPHEN = "-";
     private static final int MENU_EACH_MIN = 1;
     private static final int MENU_EACH_MAX = 20;
-    private EnumMap<Menu, Integer> orderSheet = new EnumMap(Menu.class);
+    private final EnumMap<Menu, Integer> orderSheet = new EnumMap(Menu.class);
     private List<Menu> pickedMenus;
 
     public void menuReceive(List<String> splitLine) {
@@ -35,14 +35,14 @@ public class Restaurant {
         return List.of(order.nextToken(), order.nextToken());
     }
 
-    public void orderValidate(){
+    public boolean orderValidate(){
         try{
             menuValidate();
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
+            return false;
         }
-
-
+        return true;
     }
 
 
