@@ -1,6 +1,5 @@
 package christmas.model;
 
-import christmas.controller.Employee;
 import christmas.model.menu.Menu;
 
 import java.util.Arrays;
@@ -25,9 +24,8 @@ public class Restaurant {
         }
 
         pickedMenus = Arrays.stream(Menu.values())
-                .filter(menu -> orderSheet.getOrDefault(menu, 0) > 1)
+                .filter(menu -> orderSheet.getOrDefault(menu, 0) >= 1)
                 .toList();
-        orderValidate();
     }
 
     private List<String> splitMenu(String orders){
@@ -38,6 +36,7 @@ public class Restaurant {
     public boolean orderValidate(){
         try{
             menuValidate();
+            isOnlyDrinks();
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             return false;
@@ -46,14 +45,19 @@ public class Restaurant {
     }
 
 
-    public boolean menuValidate() {
+    public void menuValidate() throws IllegalArgumentException{
         int orderEachCount = Arrays.stream(Menu.values())
             .mapToInt(menu -> orderSheet.getOrDefault(menu, 0))
             .reduce(0, Integer::sum);
 
         if(orderEachCount < MENU_EACH_MIN || orderEachCount > MENU_EACH_MAX){
-            throw new IllegalArgumentException("[ERROR]");
+            throw new IllegalArgumentException("[ERROR] 메뉴문제");
         }
-        return false;
+    }
+
+    public void isOnlyDrinks() throws IllegalArgumentException{
+        if(Menu.isOnlyDrinks(pickedMenus, orderSheet)){
+            throw new IllegalArgumentException("[ERROR] 음료만있음");
+        }
     }
 }

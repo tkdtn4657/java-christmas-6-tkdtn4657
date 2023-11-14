@@ -23,48 +23,47 @@ public class MenuConvertor {
             this::duplicateMenu
     );
 
-    public boolean inputValidate(List<String> splitLine){
+    public boolean inputValidate(List<String> splitLine) {
         try {
             visitFilters.forEach(
                     filter -> filter.accept(splitLine));
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return false;
         }
         return true;
     }
 
-    private void menuFormValidate(List<String> splitLine){
-        if(splitLine.stream()
-                .filter((line)-> line.matches(MENU_REGEX))
+    private void menuFormValidate(List<String> splitLine) throws IllegalArgumentException {
+        if (splitLine.stream()
+                .filter((line) -> line.matches(MENU_REGEX))
                 .toList()
-                .size() != splitLine.size()){
+                .size() != splitLine.size()) {
             throw new IllegalArgumentException(ERROR_MESSAGE);
         }
     }
 
-    private void availableMenu(List<String> splitLine){
+    private void availableMenu(List<String> splitLine) throws IllegalArgumentException {
         List<String> menuSplitLine = splitLine.stream()
                 .map((line) -> line.split(HYPHEN)[0])
                 .toList();
 
-        if(!menuSplitLine.stream()
-                .allMatch(menus::contains)){
+        if (!menuSplitLine.stream()
+                .allMatch(menus::contains)) {
             throw new IllegalArgumentException(ERROR_MESSAGE);
         }
     }
 
-    private void duplicateMenu(List<String> splitLine){
+    private void duplicateMenu(List<String> splitLine) throws IllegalArgumentException {
         List<String> menuSplitLine = splitLine.stream()
                 .map((line) -> line.split(HYPHEN)[0])
                 .toList();
 
-        if(menuSplitLine.stream()
+        if (menuSplitLine.stream()
                 .distinct()
                 .toList()
-                .size() != splitLine.size()){
+                .size() != splitLine.size()) {
             throw new IllegalArgumentException(ERROR_MESSAGE);
         }
     }
-
 }

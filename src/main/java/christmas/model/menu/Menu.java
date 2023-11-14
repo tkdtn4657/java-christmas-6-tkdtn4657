@@ -2,6 +2,7 @@ package christmas.model.menu;
 
 import java.util.Arrays;
 import java.util.EnumMap;
+import java.util.List;
 
 public enum Menu {
     양송이수프(6000, "애피타이저"),
@@ -17,6 +18,7 @@ public enum Menu {
     레드와인(60000, "음료"),
     샴페인(25000, "음료");
 
+    private static final int ONE = 1;
     private final int price;
     private final String menuType;
 
@@ -25,5 +27,14 @@ public enum Menu {
         this.menuType = menuType;
     }
 
+    public static boolean isOnlyDrinks(List<Menu> menus, EnumMap<Menu, Integer> orderSheet){
+        return menus.stream()
+                .filter(menu ->
+                        orderSheet.get(menu) >= ONE
+                        && !menu.menuType.equals("음료")
+                )
+                .toList()
+                .size() < ONE;
+    }
 }
 
