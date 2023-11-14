@@ -36,13 +36,5 @@ public enum Menu {
                 .size() < ONE;
     }
 
-    public static List<Menu> availableMenus(List<Menu> menus, EnumMap<Menu, Integer> orderSheet) {
-        return menus.stream()
-                .filter(menu ->
-                        orderSheet.get(menu) >= ONE
-                                && !menu.menuType.equals("음료")
-                )
-                .toList();
-    }
 }
 
