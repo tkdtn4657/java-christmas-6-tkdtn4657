@@ -5,4 +5,8 @@ public class RestaurantOutputView {
     public void startPrint() {
         System.out.println(START_RESTAURANT);
     }
+
+    public void orderMenuPrint(String orderMenu) {
+        System.out.println(orderMenu);
+    }
 }
