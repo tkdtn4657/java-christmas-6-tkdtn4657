@@ -11,14 +11,16 @@ public class Employee {
     private final RestaurantInputView restaurantInputView;
     private final RestaurantOutputView restaurantOutputView;
     private final MenuConvertor menuConvertor;
-    private final Restaurant restaurant = new Restaurant();
+    private final Restaurant restaurant;
 
     public Employee(RestaurantInputView restaurantInputView,
                     RestaurantOutputView restaurantOutputView,
-                    MenuConvertor menuConvertor) {
+                    MenuConvertor menuConvertor,
+                    Restaurant restaurant) {
         this.restaurantOutputView = restaurantOutputView;
         this.restaurantInputView = restaurantInputView;
         this.menuConvertor = menuConvertor;
+        this.restaurant = restaurant;
     }
 
     public void run() {
@@ -28,17 +30,18 @@ public class Employee {
 
     }
 
-    public void menuInput(){
+    public void menuInput() {
 
         boolean passInputValidate, passMenuValidate;
-
+        List<String> splitLine;
         do {
-            List<String> splitLine = restaurantInputView.orderInput();
+            splitLine = restaurantInputView.orderInput();
             passInputValidate = menuConvertor.inputValidate(splitLine);
+        } while (!passInputValidate);
+        do {
             restaurant.menuReceive(splitLine);
-            passMenuValidate = restaurant.menuValidate();
-        } while (!passInputValidate || !passMenuValidate);
-
+            passMenuValidate = restaurant.orderValidate();
+        } while (!passMenuValidate);
     }
 
 
