@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Optional;
 
 public class Employee {
-    private static final int FALSE_NUMBER = -1;
     private final RestaurantInputView restaurantInputView;
     private final RestaurantOutputView restaurantOutputView;
     private final MenuConvertor menuConvertor;
@@ -31,6 +30,8 @@ public class Employee {
         restaurantOutputView.startPrint();
         visitInput();
         menuInput();
+        restaurantOutputView.orderMenuPrint(restaurant.menus());
+        System.out.println();
     }
 
     private void visitInput(){
@@ -54,10 +55,7 @@ public class Employee {
         restaurant.menuReceive(splitLine);
         if (!restaurant.orderValidate()) {
             menuInput();
-            return;
         }
-
     }
-
 
 }
