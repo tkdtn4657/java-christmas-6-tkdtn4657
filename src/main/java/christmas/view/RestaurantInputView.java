@@ -5,6 +5,7 @@ import christmas.convertor.VisitConvertor;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 public class RestaurantInputView {
 
@@ -17,7 +18,7 @@ public class RestaurantInputView {
         this.visitConvertor = visitConvertor;
     }
 
-    public int visitInput() {
+    public Optional<Integer> visitInput() {
         System.out.println(INPUT_VISIT_DAY);
         String visitLine = Console.readLine();
 
@@ -25,9 +26,9 @@ public class RestaurantInputView {
             visitConvertor.visitValidate(visitLine);
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
-            visitInput();
+            return Optional.ofNullable(null);
         }
-        return Integer.parseInt(visitLine);
+        return Optional.of(Integer.parseInt(visitLine));
     }
 
     public List<String> orderInput() {

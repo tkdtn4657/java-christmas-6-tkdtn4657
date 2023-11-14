@@ -6,12 +6,16 @@ import christmas.view.RestaurantInputView;
 import christmas.view.RestaurantOutputView;
 
 import java.util.List;
+import java.util.Optional;
 
 public class Employee {
+    private static final int FALSE_NUMBER = -1;
     private final RestaurantInputView restaurantInputView;
     private final RestaurantOutputView restaurantOutputView;
     private final MenuConvertor menuConvertor;
     private final Restaurant restaurant;
+
+    int n;
 
     public Employee(RestaurantInputView restaurantInputView,
                     RestaurantOutputView restaurantOutputView,
@@ -25,23 +29,34 @@ public class Employee {
 
     public void run() {
         restaurantOutputView.startPrint();
-        restaurantInputView.visitInput();
+        visitInput();
         menuInput();
-
     }
 
-    public void menuInput() {
+    private void visitInput(){
+        Optional<Integer> inputNumber = restaurantInputView.visitInput();
+        if(!inputNumber.isPresent()){
+            visitInput();
+            return;
+        }
+        n = inputNumber.get();
+        //값이 있는거니까 사용
+    }
 
-        boolean passInputValidate, passMenuValidate;
-        List<String> splitLine;
-        do {
-            splitLine = restaurantInputView.orderInput();
-            passInputValidate = menuConvertor.inputValidate(splitLine);
-        } while (!passInputValidate);
-        do {
-            restaurant.menuReceive(splitLine);
-            passMenuValidate = restaurant.orderValidate();
-        } while (!passMenuValidate);
+    private void menuInput() {
+        List<String> splitLine = restaurantInputView.orderInput();
+
+        if (!menuConvertor.inputValidate(splitLine)) {
+            menuInput();
+            return;
+        }
+
+        restaurant.menuReceive(splitLine);
+        if (!restaurant.orderValidate()) {
+            menuInput();
+            return;
+        }
+
     }
 
 
