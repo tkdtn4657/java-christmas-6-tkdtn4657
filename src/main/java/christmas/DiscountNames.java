@@ -1,7 +1,9 @@
 package christmas;
 
 public enum DiscountNames {
-    STAR,
+    CHRISTMAS,
     DAYS,
-    CHRISTMAS
+    STAR
+
+
 }

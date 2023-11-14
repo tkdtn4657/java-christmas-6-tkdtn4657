@@ -1,15 +1,12 @@
 package christmas;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class CalendarDiscount {
     private static final int MONTH_END = 31;
     private static final int ONE_WEEK = 7;
     private static final int DAY_START = 1;
-    private static final int ONE_DAY = 1;
+    private static final int ONE = 1;
     private static final int START_DAY_START = 3;
     private static final int CHRISTMAS_DAY = 25;
     private static final int FIRST_DISCOUNT_MONEY = 1000;
@@ -32,7 +29,7 @@ public class CalendarDiscount {
         List<Integer> weekends = new ArrayList<>();
         for (int day = DAY_START; day <= MONTH_END; day += ONE_WEEK) {
             weekends.add(day);
-            weekends.add(day + ONE_DAY);
+            weekends.add(day + ONE);
         }
         return weekends;
     }
@@ -49,35 +46,43 @@ public class CalendarDiscount {
 
     /**
      * List<Map<할인혜택 종류, 허용>>
-     *     주말 : true
-     *     평일 : false
+     * 주말 : true
+     * 평일 : false
      */
-    public Map<DiscountNames,Boolean> createDiscountPermits(){
-        Map<DiscountNames,Boolean> discountPermits = new HashMap<>();
-        if(isStaredDay()){
-            discountPermits.put(DiscountNames.STAR,DISCOUNT_YES);
+    public Map<DiscountNames, Boolean> createDiscountPermits() {
+        Map<DiscountNames, Boolean> discountPermits = new LinkedHashMap<>();
+        if (isChristmasPrevDays()) {
+            discountPermits.put(DiscountNames.CHRISTMAS, DISCOUNT_YES);
         }
-
-        if(isWeekend()){
-            discountPermits.put(DiscountNames.DAYS,DISCOUNT_WEEKEND);
+        if (isWeekend()) {
+            discountPermits.put(DiscountNames.DAYS, DISCOUNT_WEEKEND);
         }
-        discountPermits.put(DiscountNames.DAYS,DISCOUNT_WEEKDAY);
-
-        if(isChristmasPrevDays()){
-            discountPermits.put(DiscountNames.STAR,DISCOUNT_YES);
+        if(!isWeekend()){
+            discountPermits.put(DiscountNames.DAYS, DISCOUNT_WEEKDAY);
+        }
+        if (isStaredDay()) {
+            discountPermits.put(DiscountNames.STAR, DISCOUNT_YES);
         }
         return discountPermits;
+    }
+
+    public int christmasDDayDiscount() {
+        return FIRST_DISCOUNT_MONEY + (nowDay - ONE) * INCREASE_DISCOUNT_PER_DAYS;
     }
 
     private boolean isStaredDay() {
         return starDay.contains(nowDay);
     }
 
-    private boolean isWeekend(){
+    private boolean isWeekend() {
         return weekendDay.contains(nowDay);
     }
 
-    private boolean isChristmasPrevDays(){
+    private boolean isChristmasPrevDays() {
         return nowDay <= CHRISTMAS_DAY;
+    }
+
+    public int getDay() {
+        return nowDay;
     }
 }

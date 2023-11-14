@@ -31,7 +31,7 @@ public class Employee {
         restaurantOutputView.startPrint();
         visitInput();
         menuInput();
-        restaurantOutputView.benefitsPreviewPrint();
+        restaurantOutputView.benefitsPreviewPrint(calendarDiscount.getDay());
         restaurantOutputView.orderMenuPrint(restaurant.menuBill(),calendarDiscount);
     }
 
@@ -42,7 +42,6 @@ public class Employee {
             return;
         }
         calendarDiscount = new CalendarDiscount(inputNumber.get());
-        //값이 있는거니까 사용
     }
 
     private void menuInput() {

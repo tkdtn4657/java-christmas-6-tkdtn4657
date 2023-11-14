@@ -27,7 +27,7 @@ public class RestaurantInputView {
             visitConvertor.visitValidate(visitLine);
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
-            return Optional.ofNullable(null);
+            return Optional.empty();
         }
         return Optional.of(Integer.parseInt(visitLine));
     }

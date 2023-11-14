@@ -15,6 +15,8 @@ public class Restaurant {
     private static final int AVAILABLE_VALUE = 1;
     private static final int MENU_EACH_MIN = 1;
     private static final int MENU_EACH_MAX = 20;
+    private static final int ZERO = 0;
+    private static final int ONE = 1;
     private EnumMap<Menu, Integer> orderSheet;
     private List<Menu> pickedMenus;
 
@@ -33,8 +35,8 @@ public class Restaurant {
         for (String menu : splitLine) {
             List<String> menuForm = splitMenu(menu);
             orderSheet.put(
-                    Menu.valueOf(menuForm.get(0)),
-                    Integer.parseInt(menuForm.get(1))
+                    Menu.valueOf(menuForm.get(ZERO)),
+                    Integer.parseInt(menuForm.get(ONE))
             );
         }
     }
@@ -63,7 +65,7 @@ public class Restaurant {
 
     public void menuValidate() throws IllegalArgumentException {
         int orderEachCount = Arrays.stream(Menu.values())
-                .mapToInt(menu -> orderSheet.getOrDefault(menu, 0))
+                .mapToInt(menu -> orderSheet.getOrDefault(menu, ZERO))
                 .reduce(0, Integer::sum);
 
         if (orderEachCount < MENU_EACH_MIN || orderEachCount > MENU_EACH_MAX) {
