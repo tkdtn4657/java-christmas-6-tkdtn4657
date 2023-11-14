@@ -36,5 +36,9 @@ public enum Menu {
                 .size() < ONE;
     }
 
+    public int menuPrice(){
+        return price;
+    }
+
 }
 

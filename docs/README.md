@@ -58,7 +58,7 @@
 - [ ] RestaurantOutputView
   - [ ] 출력값 생성
     - [x] 주문 메뉴 출력
-    - 
+    - [x] 할인 전 총 주문금액 출력
 
 ## Test Todo
 - [x] VisitConvertor 단위테스트
