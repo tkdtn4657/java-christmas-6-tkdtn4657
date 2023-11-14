@@ -30,8 +30,9 @@ public class Employee {
         restaurantOutputView.startPrint();
         visitInput();
         menuInput();
-        restaurantOutputView.orderMenuPrint(restaurant.menus());
-        System.out.println();
+        restaurantOutputView.benefitsPreviewPrint();
+        restaurantOutputView.orderMenuPrint(restaurant.menuBill());
+
     }
 
     private void visitInput(){

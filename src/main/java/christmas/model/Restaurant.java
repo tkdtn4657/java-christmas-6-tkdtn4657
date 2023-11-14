@@ -1,5 +1,6 @@
 package christmas.model;
 
+import christmas.Bill;
 import christmas.model.menu.Menu;
 
 import java.util.Arrays;
@@ -10,13 +11,10 @@ import java.util.StringTokenizer;
 public class Restaurant {
     private static final String ERROR_MESSAGE = "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.";
     private static final String HYPHEN = "-";
-    private static final String LINE_SEPARATOR = System.lineSeparator();
-    private static final String EACH_PRINT = "개";
     private static final int DEFAULT_VALUE = 0;
     private static final int AVAILABLE_VALUE = 1;
     private static final int MENU_EACH_MIN = 1;
     private static final int MENU_EACH_MAX = 20;
-    private static final String BLANK = " ";
     private EnumMap<Menu, Integer> orderSheet;
     private List<Menu> pickedMenus;
 
@@ -24,19 +22,11 @@ public class Restaurant {
         orderSheet = new EnumMap<Menu, Integer>(Menu.class);
         orderSheetAvailableMenus(splitLine);
         pickedMenus = pickedMenu();
-        menus();
     }
 
-    public String menus() {
-        StringBuilder orderMenuBuilder = new StringBuilder();
-        pickedMenus.forEach(menu ->
-                orderMenuBuilder.append(menu)
-                        .append(BLANK)
-                        .append(orderSheet.get(menu))
-                        .append(EACH_PRINT)
-                        .append(LINE_SEPARATOR)
-        );
-        return orderMenuBuilder.toString();
+
+    public Bill menuBill(){
+        return new Bill(orderSheet, pickedMenus);
     }
 
     private void orderSheetAvailableMenus(List<String> splitLine) {
