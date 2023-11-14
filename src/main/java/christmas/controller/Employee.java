@@ -1,5 +1,6 @@
 package christmas.controller;
 
+import christmas.CalendarDiscount;
 import christmas.model.Restaurant;
 import christmas.model.menu.MenuConvertor;
 import christmas.view.RestaurantInputView;
@@ -14,7 +15,7 @@ public class Employee {
     private final MenuConvertor menuConvertor;
     private final Restaurant restaurant;
 
-    int n;
+    private CalendarDiscount calendarDiscount;
 
     public Employee(RestaurantInputView restaurantInputView,
                     RestaurantOutputView restaurantOutputView,
@@ -31,8 +32,7 @@ public class Employee {
         visitInput();
         menuInput();
         restaurantOutputView.benefitsPreviewPrint();
-        restaurantOutputView.orderMenuPrint(restaurant.menuBill());
-
+        restaurantOutputView.orderMenuPrint(restaurant.menuBill(),calendarDiscount);
     }
 
     private void visitInput(){
@@ -41,7 +41,7 @@ public class Employee {
             visitInput();
             return;
         }
-        n = inputNumber.get();
+        calendarDiscount = new CalendarDiscount(inputNumber.get());
         //값이 있는거니까 사용
     }
 

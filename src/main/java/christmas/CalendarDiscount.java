@@ -1,7 +1,9 @@
 package christmas;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CalendarDiscount {
     private static final int MONTH_END = 31;
@@ -10,12 +12,17 @@ public class CalendarDiscount {
     private static final int ONE_DAY = 1;
     private static final int START_DAY_START = 3;
     private static final int CHRISTMAS_DAY = 25;
-
+    private static final int FIRST_DISCOUNT_MONEY = 1000;
+    private static final int INCREASE_DISCOUNT_PER_DAYS = 100;
+    private static final boolean DISCOUNT_YES = true;
+    private static final boolean DISCOUNT_NO = false;
+    private static final boolean DISCOUNT_WEEKEND = true;
+    private static final boolean DISCOUNT_WEEKDAY = false;
     private final List<Integer> starDay;
     private final List<Integer> weekendDay;
     private final int nowDay;
 
-    CalendarDiscount(int nowDay) {
+    public CalendarDiscount(int nowDay) {
         this.weekendDay = weekendAdder();
         this.starDay = starDayAdder();
         this.nowDay = nowDay;
@@ -37,5 +44,40 @@ public class CalendarDiscount {
         }
         starDays.add(CHRISTMAS_DAY);
         return starDays;
+    }
+
+
+    /**
+     * List<Map<할인혜택 종류, 허용>>
+     *     주말 : true
+     *     평일 : false
+     */
+    public Map<DiscountNames,Boolean> createDiscountPermits(){
+        Map<DiscountNames,Boolean> discountPermits = new HashMap<>();
+        if(isStaredDay()){
+            discountPermits.put(DiscountNames.STAR,DISCOUNT_YES);
+        }
+
+        if(isWeekend()){
+            discountPermits.put(DiscountNames.DAYS,DISCOUNT_WEEKEND);
+        }
+        discountPermits.put(DiscountNames.DAYS,DISCOUNT_WEEKDAY);
+
+        if(isChristmasPrevDays()){
+            discountPermits.put(DiscountNames.STAR,DISCOUNT_YES);
+        }
+        return discountPermits;
+    }
+
+    private boolean isStaredDay() {
+        return starDay.contains(nowDay);
+    }
+
+    private boolean isWeekend(){
+        return weekendDay.contains(nowDay);
+    }
+
+    private boolean isChristmasPrevDays(){
+        return nowDay <= CHRISTMAS_DAY;
     }
 }
