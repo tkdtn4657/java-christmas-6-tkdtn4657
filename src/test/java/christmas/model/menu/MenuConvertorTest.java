@@ -2,6 +2,8 @@ package christmas.model.menu;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import christmas.Application;
+import christmas.menu.Menu;
+import christmas.menu.MenuConvertor;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;

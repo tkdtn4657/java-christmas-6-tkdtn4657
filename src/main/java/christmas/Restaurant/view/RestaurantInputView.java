@@ -1,4 +1,4 @@
-package christmas.view;
+package christmas.Restaurant.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import christmas.convertor.VisitConvertor;

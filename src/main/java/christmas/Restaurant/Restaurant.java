@@ -1,7 +1,7 @@
-package christmas.model;
+package christmas.Restaurant;
 
-import christmas.Bill;
-import christmas.model.menu.Menu;
+import christmas.bill.Bill;
+import christmas.menu.Menu;
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;

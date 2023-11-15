@@ -1,10 +1,10 @@
-package christmas.view;
+package christmas.Restaurant.view;
 
-import christmas.Bill;
-import christmas.CalendarDiscount;
-import christmas.DiscountNames;
-import christmas.model.menu.Menu;
-import christmas.model.menu.MenuType;
+import christmas.bill.Bill;
+import christmas.calendarDiscount.CalendarDiscount;
+import christmas.calendarDiscount.DiscountNames;
+import christmas.menu.Menu;
+import christmas.menu.MenuType;
 import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.LinkedList;

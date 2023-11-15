@@ -1,4 +1,4 @@
-package christmas.model.menu;
+package christmas.menu;
 
 import java.util.List;
 

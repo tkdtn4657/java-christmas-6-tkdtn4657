@@ -1,4 +1,4 @@
-package christmas;
+package christmas.calendarDiscount;
 
 public enum DiscountNames {
     CHRISTMAS,

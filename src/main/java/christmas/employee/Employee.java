@@ -1,10 +1,10 @@
-package christmas.controller;
+package christmas.employee;
 
-import christmas.CalendarDiscount;
-import christmas.model.Restaurant;
-import christmas.model.menu.MenuConvertor;
-import christmas.view.RestaurantInputView;
-import christmas.view.RestaurantOutputView;
+import christmas.calendarDiscount.CalendarDiscount;
+import christmas.Restaurant.Restaurant;
+import christmas.menu.MenuConvertor;
+import christmas.Restaurant.view.RestaurantInputView;
+import christmas.Restaurant.view.RestaurantOutputView;
 import java.util.List;
 import java.util.Optional;
 

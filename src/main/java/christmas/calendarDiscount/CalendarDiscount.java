@@ -1,4 +1,4 @@
-package christmas;
+package christmas.calendarDiscount;
 
 import java.util.*;
 
