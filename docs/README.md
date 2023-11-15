@@ -67,6 +67,7 @@
 - [x] VisitConvertor 단위테스트
 - [x] MenuConvertor 단위테스트
 - [x] Menu 단위테스트
+- [x] CalendarDiscount 단위테스트
 
 ---
 
