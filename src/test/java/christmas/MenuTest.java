@@ -3,7 +3,6 @@ package christmas;
 import christmas.menu.Menu;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
-
 import java.util.EnumMap;
 import java.util.List;
 

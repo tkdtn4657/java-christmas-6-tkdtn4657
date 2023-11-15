@@ -1,9 +1,7 @@
 package christmas;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
-import christmas.Application;
 import org.junit.jupiter.api.Test;
-
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -32,8 +30,6 @@ class VisitConvertorTest extends NsTest {
             assertThat(output()).contains("[ERROR] 값이 입력되지 않았습니다.");
         });
     }
-
-
 
     @Override
     protected void runMain() {

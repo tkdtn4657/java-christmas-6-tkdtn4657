@@ -1,14 +1,11 @@
 package christmas;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
-import christmas.Application;
 import christmas.menu.Menu;
 import christmas.menu.MenuConvertor;
 import org.junit.jupiter.api.Test;
-
 import java.util.Arrays;
 import java.util.List;
-
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -21,12 +18,14 @@ class MenuConvertorTest extends NsTest {
     private final List<String> menus = Arrays.stream(Menu.values())
             .map(String::valueOf)
             .toList();
+
     @Test
     void 입력값의_유효성_검증() {
         List<String> testLines = List.of("티본스테이크-1");
 
         assertTrue(menuConvertor.inputValidate(testLines));
     }
+
     @Test
     void 중복_메뉴_테스트() {
         assertSimpleTest(() -> {
@@ -76,7 +75,7 @@ class MenuConvertorTest extends NsTest {
     }
 
     @Test
-    void 메뉴_입력형태_검증_티본스테이크_111(){
+    void 메뉴_입력형태_검증_티본스테이크_111() {
         String MENU_REGEX = ".*-\\d{1,2}$";
         String tibon = "티본스테이크-111";
 
@@ -84,7 +83,7 @@ class MenuConvertorTest extends NsTest {
     }
 
     @Test
-    void 유효메뉴_검증(){
+    void 유효메뉴_검증() {
         List<String> testLines = List.of("티본스테이크-1");
         List<String> menuSplitLine = testLines.stream()
                 .map((line) -> line.split(HYPHEN)[0])
