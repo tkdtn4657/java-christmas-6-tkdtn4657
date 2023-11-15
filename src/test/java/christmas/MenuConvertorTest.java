@@ -1,4 +1,4 @@
-package christmas.model.menu;
+package christmas;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import christmas.Application;
@@ -22,7 +22,7 @@ class MenuConvertorTest extends NsTest {
             .map(String::valueOf)
             .toList();
     @Test
-    void validate() {
+    void 입력값의_유효성_검증() {
         List<String> testLines = List.of("티본스테이크-1");
 
         assertTrue(menuConvertor.inputValidate(testLines));
@@ -68,7 +68,7 @@ class MenuConvertorTest extends NsTest {
     }
 
     @Test
-    void menuContain(){
+    void 유효메뉴_검증(){
         List<String> testLines = List.of("티본스테이크-1");
         List<String> menuSplitLine = testLines.stream()
                 .map((line) -> line.split(HYPHEN)[0])

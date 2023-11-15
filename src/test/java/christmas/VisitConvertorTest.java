@@ -1,4 +1,4 @@
-package christmas.convertor;
+package christmas;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import christmas.Application;
