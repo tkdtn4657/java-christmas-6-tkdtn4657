@@ -5,7 +5,6 @@ import christmas.model.Restaurant;
 import christmas.model.menu.MenuConvertor;
 import christmas.view.RestaurantInputView;
 import christmas.view.RestaurantOutputView;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -32,12 +31,12 @@ public class Employee {
         visitInput();
         menuInput();
         restaurantOutputView.benefitsPreviewPrint(calendarDiscount.getDay());
-        restaurantOutputView.orderMenuPrint(restaurant.menuBill(),calendarDiscount);
+        restaurantOutputView.orderMenuPrint(restaurant.menuBill(), calendarDiscount);
     }
 
-    private void visitInput(){
+    private void visitInput() {
         Optional<Integer> inputNumber = restaurantInputView.visitInput();
-        if(!inputNumber.isPresent()){
+        if (!inputNumber.isPresent()) {
             visitInput();
             return;
         }

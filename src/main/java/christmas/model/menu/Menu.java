@@ -36,7 +36,7 @@ public enum Menu {
                 .size() < ONE;
     }
 
-    public int menuPrice(){
+    public int menuPrice() {
         return price;
     }
 

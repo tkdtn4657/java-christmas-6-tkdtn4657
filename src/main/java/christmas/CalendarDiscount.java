@@ -57,7 +57,7 @@ public class CalendarDiscount {
         if (isWeekend()) {
             discountPermits.put(DiscountNames.DAYS, DISCOUNT_WEEKEND);
         }
-        if(!isWeekend()){
+        if (!isWeekend()) {
             discountPermits.put(DiscountNames.DAYS, DISCOUNT_WEEKDAY);
         }
         if (isStaredDay()) {

@@ -2,7 +2,6 @@ package christmas.model;
 
 import christmas.Bill;
 import christmas.model.menu.Menu;
-
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
@@ -27,7 +26,7 @@ public class Restaurant {
     }
 
 
-    public Bill menuBill(){
+    public Bill menuBill() {
         return new Bill(orderSheet, pickedMenus);
     }
 

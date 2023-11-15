@@ -2,7 +2,6 @@ package christmas.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import christmas.convertor.VisitConvertor;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -15,7 +14,7 @@ public class RestaurantInputView {
 
     private final VisitConvertor visitConvertor;
 
-    public RestaurantInputView(VisitConvertor visitConvertor){
+    public RestaurantInputView(VisitConvertor visitConvertor) {
         this.visitConvertor = visitConvertor;
     }
 
@@ -25,7 +24,7 @@ public class RestaurantInputView {
 
         try {
             visitConvertor.visitValidate(visitLine);
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return Optional.empty();
         }

@@ -5,7 +5,6 @@ import christmas.CalendarDiscount;
 import christmas.DiscountNames;
 import christmas.model.menu.Menu;
 import christmas.model.menu.MenuType;
-
 import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.LinkedList;

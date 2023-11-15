@@ -1,6 +1,5 @@
 package christmas.convertor;
 
-
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -22,21 +21,21 @@ public class VisitConvertor {
                 filter -> filter.accept(visitLine));
     }
 
-    private void isEmpty(String visitLine)throws IllegalArgumentException{
-        if(visitLine.isEmpty() || visitLine.isBlank()){
+    private void isEmpty(String visitLine) throws IllegalArgumentException {
+        if (visitLine.isEmpty() || visitLine.isBlank()) {
             throw new IllegalArgumentException(NO_SUCH_INPUT_LINE);
         }
     }
 
-    private void isInteger(String visitLine) throws NumberFormatException{
-        if(!visitLine.matches(IS_INTEGER_REGEX)){
+    private void isInteger(String visitLine) throws NumberFormatException {
+        if (!visitLine.matches(IS_INTEGER_REGEX)) {
             throw new NumberFormatException(ERROR_MESSAGE);
         }
     }
 
-    private void rangeCorrect(String visitLine) throws IllegalArgumentException{
+    private void rangeCorrect(String visitLine) throws IllegalArgumentException {
         int validateLine = Integer.parseInt(visitLine);
-        if(!(MIN_RANGE_CHECK <= validateLine && validateLine <= MAX_RANGE_CHECK)){
+        if (!(MIN_RANGE_CHECK <= validateLine && validateLine <= MAX_RANGE_CHECK)) {
             throw new IllegalArgumentException(ERROR_MESSAGE);
         }
     }

@@ -4,6 +4,4 @@ public enum DiscountNames {
     CHRISTMAS,
     DAYS,
     STAR
-
-
 }
