@@ -60,6 +60,22 @@ class MenuConvertorTest extends NsTest {
     }
 
     @Test
+    void 메뉴_갯수검증_20_초과() {
+        assertSimpleTest(() -> {
+            runException("1", "티본스테이크-21");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 메뉴_갯수검증_20() {
+        assertSimpleTest(() -> {
+            runException("1", "티본스테이크-20");
+            assertThat(output()).contains("티본스테이크 20개");
+        });
+    }
+
+    @Test
     void 메뉴_입력형태_검증_티본스테이크_111(){
         String MENU_REGEX = ".*-\\d{1,2}$";
         String tibon = "티본스테이크-111";
