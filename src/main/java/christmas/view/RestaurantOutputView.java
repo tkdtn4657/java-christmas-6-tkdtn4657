@@ -150,12 +150,12 @@ public class RestaurantOutputView {
     private void noDiscountPrint() {
         System.out.println(
                 String.format(
-                TEN_THOUSAND_UNDER_PRINT,
-                GIVE_MENU_NOTHING,
-                TOTAL_BENEFITS_NOTHING,
-                BENEFITS_NOTHING,
-                decimalFormat.format(prevDiscountMoney),WON_PRINT,
-                EVENT_BADGE_NOTHING)
+                        TEN_THOUSAND_UNDER_PRINT,
+                        GIVE_MENU_NOTHING,
+                        TOTAL_BENEFITS_NOTHING,
+                        BENEFITS_NOTHING,
+                        decimalFormat.format(prevDiscountMoney), WON_PRINT,
+                        EVENT_BADGE_NOTHING)
         );
     }
 
@@ -194,20 +194,24 @@ public class RestaurantOutputView {
         MenuType menuType;
         if (isWeekend) {
             menuType = MenuType.메인;
-            int weekDiscountMoney = weekDiscountMoney(menuType);
-            discountMoney += weekDiscountMoney;
-            if (weekDiscountMoney == ZERO) {
-                return EMPTY;
-            }
-            return String.format(WEEKEND_DISCOUNT, decimalFormat.format(weekDiscountMoney(menuType)));
+            int weekDiscountMoney = plusDiscountMoney(weekDiscountMoney(menuType));
+            return emptyDiscountMoney(weekDiscountMoney, menuType);
         }
         menuType = MenuType.디저트;
-        int weekDiscountMoney = weekDiscountMoney(menuType);
-        discountMoney += weekDiscountMoney;
+        int weekDiscountMoney = plusDiscountMoney(weekDiscountMoney(menuType));
+        return emptyDiscountMoney(weekDiscountMoney, menuType);
+    }
+
+    private String emptyDiscountMoney(int weekDiscountMoney, MenuType menuType) {
         if (weekDiscountMoney == ZERO) {
             return EMPTY;
         }
-        return String.format(WEEKDAY_DISCOUNT, decimalFormat.format(weekDiscountMoney));
+        return String.format(WEEKEND_DISCOUNT, decimalFormat.format(weekDiscountMoney(menuType)));
+    }
+
+    private int plusDiscountMoney(int weekDiscountMoney) {
+        discountMoney += weekDiscountMoney;
+        return weekDiscountMoney;
     }
 
     private int weekDiscountMoney(MenuType menuType) {
