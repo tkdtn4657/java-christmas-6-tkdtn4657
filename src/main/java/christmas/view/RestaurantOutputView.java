@@ -117,10 +117,12 @@ public class RestaurantOutputView {
 
     private void totalDiscountPrint() {
         if (isChampagne) {
-            System.out.println(String.format(DISCOUNT_TOTAL_PRICE, decimalFormat.format(prevDiscountMoney - discountMoney + CHAMPAGNE_DISCOUNT)));
+            System.out.println(String.format(DISCOUNT_TOTAL_PRICE,
+                    decimalFormat.format(prevDiscountMoney - discountMoney + CHAMPAGNE_DISCOUNT)));
             return;
         }
-        System.out.println(String.format(DISCOUNT_TOTAL_PRICE, decimalFormat.format(prevDiscountMoney - discountMoney)));
+        System.out.println(String.format(DISCOUNT_TOTAL_PRICE,
+                decimalFormat.format(prevDiscountMoney - discountMoney)));
     }
 
     private void badgePrint() {
@@ -163,7 +165,13 @@ public class RestaurantOutputView {
         Queue<String> discountPermitPrinter = new LinkedList<>();
         discountPermitPrinter.add(PRINT_PERMITS);
         Map<DiscountNames, Boolean> discountPermits = calendarDiscount.createDiscountPermits();
-        Arrays.stream(DiscountNames.values()).filter(discountPermits::containsKey).forEach(discountName -> discountPermitPrinter.add(discountMode(discountName, discountPermits.get(discountName))));
+        Arrays.stream(DiscountNames.values())
+                .filter(discountPermits::containsKey)
+                .forEach(discountName ->
+                        discountPermitPrinter.add(
+                                discountMode(discountName, discountPermits.get(discountName))
+                        )
+                );
         if (isChampagne) {
             discountPermitPrinter.add(GIVE_CHAMPAGNE);
         }
@@ -215,14 +223,13 @@ public class RestaurantOutputView {
     }
 
     private int weekDiscountMoney(MenuType menuType) {
-        EnumMap<Menu, Integer> orderSheet = arrivedBill.getOrderSheet();
-        int discountMoney = arrivedBill.getPickedMenus().stream()
+        EnumMap<Menu, Integer> orderSheet = arrivedBill.orderSheet();
+        return arrivedBill.pickedMenus().stream()
                 .filter(menu ->
                         menuType.menusContain(String.valueOf(menu))
                 )
                 .mapToInt(menu -> orderSheet.get(menu) * WEEK_DISCOUNT)
                 .sum();
-        return discountMoney;
     }
 
     public void isChampagne(int noDiscountMoney) {
@@ -235,8 +242,8 @@ public class RestaurantOutputView {
     }
 
     private int prevDiscountMoney() {
-        List<Menu> pickedMenus = arrivedBill.getPickedMenus();
-        EnumMap<Menu, Integer> orderSheet = arrivedBill.getOrderSheet();
+        List<Menu> pickedMenus = arrivedBill.pickedMenus();
+        EnumMap<Menu, Integer> orderSheet = arrivedBill.orderSheet();
 
         int prevDiscountMoney = pickedMenus.stream()
                 .mapToInt(menu -> menu.menuPrice() * orderSheet.get(menu)).sum();
@@ -257,9 +264,9 @@ public class RestaurantOutputView {
     private String menus() {
         StringBuilder orderMenuBuilder = new StringBuilder();
 
-        arrivedBill.getPickedMenus().forEach(menu -> orderMenuBuilder.append(menu)
+        arrivedBill.pickedMenus().forEach(menu -> orderMenuBuilder.append(menu)
                 .append(BLANK)
-                .append(arrivedBill.getOrderSheet().get(menu))
+                .append(arrivedBill.orderSheet().get(menu))
                 .append(EACH_PRINT)
                 .append(LINE_SEPARATOR));
         return orderMenuBuilder.toString();
