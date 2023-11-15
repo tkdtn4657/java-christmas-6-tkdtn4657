@@ -66,7 +66,7 @@
 ## Test Todo
 - [x] VisitConvertor 단위테스트
 - [x] MenuConvertor 단위테스트
-
+- [x] Menu 단위테스트
 
 ---
 
